@@ -3,9 +3,6 @@
 /**
  * @param \Framework\Helpers $h
  */
-
-use PHP_CodeSniffer\Generators\HTML;
-
 // show only errors
 error_reporting(E_ERROR);
 

@@ -1,8 +1,24 @@
-# PHP Development environment using Docker
+# PHP Framework
 
-I copied most of the configs from [nanoninja /
-docker-nginx-php-mysql](https://github.com/nanoninja/docker-nginx-php-mysql), but I am using the official php images in addition to getting xdebug working (on VS Code, Windows 11, Docker Desktop with WSL2).
+This is a PHP framework that is just a fun little project so I have something to do. It is not meant to be used in any way, as it's very bad.
 
-I have not tested the Makefile or Travis CI yet.
+## Functionality
 
-You can read the [original README here](old_README.md).
+The framework is very simple. The basic idea is that every component is it's own file, then you can reuse components with different props (similar to React).
+
+Inside the components you mostly use the helper object provided to do things like add functionality to buttons. You can also store data directly in `$this->data` and it will be auto-saved to the session.
+
+There's also a built-in connection to the DB. You can use it by calling `$this->db->query()` or `$this->db->queryOne()` or `$this->db->execute()`.
+
+Using this feels like a shitty version of React where you have to mess around with PHP's general shittiness. Good luck ;)
+
+## Goal
+
+My goal was to create a tool where all the logic (frontend and backend) + styles could be in one file (similar to Next.js).
+
+## Todo
+
+- [ ] File system routing
+  - [ ] Layouts
+- [ ] Solve problem where data is kept even when you don't want it (duh, everything is stored in session) - for example when a component is rerendered
+- [ ] Only rerender components that have changed
