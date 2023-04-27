@@ -1,6 +1,7 @@
 {
-    "require": {},
-    "require-dev": {},
-    "minimum-stability": "stable",
+    "require": {
+        "anzeblabla/framework": "dev-main"
+    },
+    "minimum-stability": "dev",
     "prefer-stable": true
 }

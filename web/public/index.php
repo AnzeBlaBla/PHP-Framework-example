@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/../app/vendor/autoload.php';
 
 use AnzeBlaBla\Framework\Framework, AnzeBlaBla\Framework\Helpers, AnzeBlaBla\Framework\Component, AnzeBlaBla\Framework\RenderMode;
 
