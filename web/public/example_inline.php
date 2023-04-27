@@ -1,11 +1,11 @@
 <?php
 require_once __DIR__ . '/../app/vendor/autoload.php';
 
-use AnzeBlaBla\Framework\Framework, AnzeBlaBla\Framework\DBConnection;
+use AnzeBlaBla\Framework\Framework, AnzeBlaBla\Framework\Helpers, AnzeBlaBla\Framework\Component, AnzeBlaBla\Framework\RenderMode;
 
-$db = new DBConnection('mysql:host=mysql;dbname=test', 'dev', 'dev');
+//$c = new Component(require('components/Test.php'));
+Framework::$renderMode = RenderMode::WebComponent;
 
-$framework = new Framework(require('App.php'), $db);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +18,24 @@ $framework = new Framework(require('App.php'), $db);
 </head>
 
 <body>
-    <?= $framework->render() ?>
+    <?php
+    $testvar = 'none';
+    ?>
+
+    <?= Helpers::$instance->component('components/Form', [
+        'fields' => [
+            [
+                'name' => 'name',
+                'type' => 'text',
+                'placeholder' => 'Name',
+            ]
+        ],
+        'submit' => function ($data) use (&$testvar) {
+            $testvar = $data['name'];
+        }
+    ]) ?>
+    <p>Testvar: <?= $testvar ?></p>
+
 </body>
 
 </html>

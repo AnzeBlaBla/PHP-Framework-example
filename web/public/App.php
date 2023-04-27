@@ -18,7 +18,7 @@ return function ($h) {
             {$h->if(
                 $h->sessionState->loggedIn,
                 $h->component('components/Dashboard'),
-                $h->component('components/Login')
+                $h->component('components/Auth')
             )}
         </div>
     HTML;

@@ -10,12 +10,13 @@ return function ($h) {
      */
     return <<<HTML
             <form onsubmit="{$h->onsubmit($h->function($this->props->submit))}">
-                <input type="text" name="name" placeholder="Name">
-                <input type="password" name="password" placeholder="Password">
+            {$h->map($this->props->fields, function ($field) use ($h) {
+                return <<<HTML
+                    <input type="{$field['type']}" name="{$field['name']}" placeholder="{$field['placeholder']}">
+                HTML;
+            })}
                 <input type="submit" value="Submit">
             </form>
-
-
             {$this->treeLocation()}
     HTML;
 };
