@@ -1,0 +1,62 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "83216cc2c2f143afb62b2c269fa0b02c",
+    "packages": [
+        {
+            "name": "anzeblabla/framework",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AnzeBlaBla/PHP-Framework.git",
+                "reference": "cc610609eed0c4e5c925d3cf94280d3f1ae20770"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AnzeBlaBla/PHP-Framework/zipball/cc610609eed0c4e5c925d3cf94280d3f1ae20770",
+                "reference": "cc610609eed0c4e5c925d3cf94280d3f1ae20770",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AnzeBlaBla\\Framework\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "AnzeBlaBla",
+                    "email": "anzemajblabla@gmail.com"
+                }
+            ],
+            "description": "A toy project PHP framework",
+            "support": {
+                "issues": "https://github.com/AnzeBlaBla/PHP-Framework/issues",
+                "source": "https://github.com/AnzeBlaBla/PHP-Framework/tree/main"
+            },
+            "time": "2023-04-27T22:16:35+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "anzeblabla/framework": 20
+    },
+    "prefer-stable": true,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}

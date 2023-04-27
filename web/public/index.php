@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . '/../app/src/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
-use Framework\Framework, Framework\Helpers, Framework\Component, Framework\RenderMode;
+use AnzeBlaBla\Framework\Framework, AnzeBlaBla\Framework\Helpers, AnzeBlaBla\Framework\Component, AnzeBlaBla\Framework\RenderMode;
 
 //$c = new Component(require('components/Test.php'));
 Framework::$renderMode = RenderMode::WebComponent;

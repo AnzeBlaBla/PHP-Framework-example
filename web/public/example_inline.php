@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . '/../app/src/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
-use Framework\Framework, Framework\DBConnection;
+use AnzeBlaBla\Framework\Framework, AnzeBlaBla\Framework\DBConnection;
 
 $db = new DBConnection('mysql:host=mysql;dbname=test', 'dev', 'dev');
 
