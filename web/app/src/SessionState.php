@@ -9,9 +9,11 @@ class SessionState
     private $state = [];
     private $key;
 
-    public function __construct($key)
+    public function __construct($key = 'DEFAULT')
     {
-        session_start();
+        // if session not started, start it
+        if (session_status() == PHP_SESSION_NONE)
+            session_start();
 
         $this->key = $key;
 
@@ -62,14 +64,5 @@ class SessionState
     public function save()
     {
         $_SESSION[$this->key] = json_encode($this->state);
-    }
-
-    public function clear()
-    {
-        session_start();
-
-        unset($_SESSION[$this->key]);
-
-        session_write_close();
     }
 }

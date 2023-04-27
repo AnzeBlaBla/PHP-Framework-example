@@ -2,28 +2,42 @@
 
 namespace Framework;
 
+enum RenderMode {
+    case WebComponent;
+    case Raw;
+}
+
+Framework::$instance = new Framework(null, null, Helpers::$instance);
 class Framework
 {
+    public static Framework $instance;
+
+    public static RenderMode $renderMode = RenderMode::Raw;
+
     private $rootComponent;
     private $helpers;
     private SessionState $sessionState;
     private ?DBConnection $dbConnection;
     private $projectRoot;
 
-    public function __construct($renderFunction, $dbConnection = null)
+    public function __construct($renderFunction = null, $dbConnection = null, $helpers = null)
     {
         $this->sessionState = new SessionState('Framework');
 
         $backtrace = debug_backtrace();
         $this->projectRoot = dirname($backtrace[0]['file']);
-        $this->helpers = new Helpers($this->sessionState, $dbConnection, $this->projectRoot);
+        if ($helpers == null)
+            $this->helpers = new Helpers($this->sessionState, $dbConnection, $this->projectRoot);
+        else
+            $this->helpers = $helpers;
 
         $this->dbConnection = $dbConnection;
 
 
         $this->handleRequestData();
 
-        $this->rootComponent = new Component($renderFunction, $this->helpers);
+        if ($renderFunction != null)
+            $this->rootComponent = new Component($renderFunction, $this->helpers);
     }
 
     private function handleRequestData()
@@ -46,11 +60,13 @@ class Framework
     public function render()
     {
         echo $this->renderFrontendDependencies();
-        echo $this->rootComponent->render();
+
+        if ($this->rootComponent != null)
+            echo $this->rootComponent->render();
     }
 
-    private function renderFrontendDependencies()
+    public static function renderFrontendDependencies()
     {
-        include(__DIR__ . '/frontend.php');
+        include_once(__DIR__ . '/frontend.php');
     }
 }

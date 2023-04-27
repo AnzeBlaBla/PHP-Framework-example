@@ -35,12 +35,14 @@ class Component
         $this->state = ComponentState::Updated;
     }
 
-    public function __construct($renderFunction, $helpers, $props = [], $key = null)
+    public function __construct($renderFunction, $helpers = null, $props = [], $key = null)
     {
         /* Set last constructed component */
         self::$lastConstructed = $this;
 
         $this->uniqueID = $key;
+        if ($helpers == null)
+            $helpers = new Helpers();
         $this->helpers = $helpers;
 
         /* Get component name (file name) using reflection */
@@ -68,7 +70,7 @@ class Component
         /* Handle render tree related stuff */
         $this->parentComponent = self::$lastRendered;
         if ($this->parentComponent == null) {
-            $this->componentTreePath = [];
+            $this->componentTreePath = [$this->componentName];
         } else {
             $this->componentTreePath = array_merge($this->parentComponent->componentTreePath, [$this->componentName]);
         }
@@ -90,19 +92,30 @@ class Component
         /* Set component state */
         $this->state = ComponentState::Rendered;
 
-        return <<<HTML
-            
-            <template id="template-{$this->uniqueID}">
+
+        Framework::renderFrontendDependencies(); // In case they weren't rendered yet
+
+        if (Framework::$renderMode == RenderMode::Raw) {
+            return <<<HTML
                 <!--$this->uniqueID-->
                 {$componentHTML}
                 <!--$this->uniqueID-->
-            </template>
+            HTML;
+        } else if (Framework::$renderMode == RenderMode::WebComponent) {
+            return <<<HTML
+            
+                <template id="template-{$this->uniqueID}">
+                    <!--$this->uniqueID-->
+                    {$componentHTML}
+                    <!--$this->uniqueID-->
+                </template>
 
-            <framework-component
-                uniqueid="{$this->uniqueID}"
-                component="{$this->componentName}"
-            ></framework-component>
-        HTML;
+                <framework-component
+                    uniqueid="{$this->uniqueID}"
+                    component="{$this->componentName}"
+                ></framework-component>
+            HTML;
+        }
     }
 
     /* Default string conversion */
@@ -130,5 +143,11 @@ class Component
             throw new \Exception("Trying to set property of component before it was rendered (in component {$this->componentName})");
         }
         $this->data->{$name} = $value;
+    }
+
+    /* Debugging functions */
+    public function treeLocation()
+    {
+        return implode(' > ', $this->componentTreePath);
     }
 }

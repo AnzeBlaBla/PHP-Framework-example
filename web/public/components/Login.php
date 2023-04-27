@@ -9,7 +9,7 @@ return function ($h) {
      * @var \Framework\Component $this
      */
 
-    $submit = $h->function(function ($data) use ($h, &$message) {
+    $submit = function ($data) use ($h, &$message) {
         // If user exists
         $user = $h->db->queryOne('SELECT * FROM users WHERE name = ?', [
             $data['name']
@@ -43,16 +43,14 @@ return function ($h) {
 
             $h->reload();
         }
-    });
+    };
     return <<<HTML
         <div>
             <h2>Login</h2>
 
-            <form onsubmit="{$h->onsubmit($submit)}">
-                <input type="text" name="name" placeholder="Name">
-                <input type="password" name="password" placeholder="Password">
-                <input type="submit" value="Submit">
-            </form>
+            {$h->component('components/LoginForm', [
+                'submit' => $submit,
+            ])}
 
             {$h->if($message, "<p class='error'>{$message}</p>")}
 

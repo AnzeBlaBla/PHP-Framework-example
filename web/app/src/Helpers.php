@@ -2,8 +2,14 @@
 
 namespace Framework;
 
+use Framework\SessionState;
+
+Helpers::$instance = new Helpers();
 class Helpers
 {
+    /* Instance for use when no framework is initialized */
+    public static Helpers $instance;
+
     private $specialFunctions = [];
 
     // Is set when a function was called
@@ -20,8 +26,10 @@ class Helpers
     public ?DBConnection $db;
     public $projectRoot;
 
-    public function __construct($sessionState, $dbConnection, $projectRoot)
+    public function __construct($sessionState = null, $dbConnection = null, $projectRoot = '')
     {
+        if($sessionState == null)
+            $sessionState = new SessionState();
         $this->sessionState = $sessionState;
         $this->db = $dbConnection;
         $this->projectRoot = $projectRoot;
@@ -34,9 +42,9 @@ class Helpers
 
     public function function($function)
     {
-        $funcOwner = Component::$lastRendered;
+        $ownerUniqueID = Component::$lastRendered ? Component::$lastRendered->uniqueID : 'root';
 
-        $newFuncID = count($this->specialFunctions) + 1 . '_' . $funcOwner->uniqueID;
+        $newFuncID = count($this->specialFunctions) + 1 . '_' . $ownerUniqueID;
         $newFunc = new SpecialFunction($function, $newFuncID);
 
         $this->specialFunctions[$newFuncID] = $newFunc;

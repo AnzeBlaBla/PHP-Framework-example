@@ -8,15 +8,16 @@ return function ($h) {
     /**
      * @var \Framework\Component $this
      */
+    $color = $this->props->color ?? 'blue';
     return <<<HTML
         <div>
             <style>
                 h1 {
-                    color: blue;
+                    color: {$color};
                 }
             </style>
 
-            <h1>Test blue</h1>
+            <h1>Test $color</h1>
         </div>
     HTML;
 };
