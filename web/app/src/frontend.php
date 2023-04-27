@@ -71,14 +71,58 @@
     }
 
     function getFormData(target) {
-        var data = {};
-        var elements = target.elements;
-        for (var i = 0; i < elements.length; i++) {
-            var element = elements[i];
+        const data = {};
+        const elements = target.elements;
+        for (let i = 0; i < elements.length; i++) {
+            const element = elements[i];
             if (element.name !== '') {
                 data[element.name] = element.value;
             }
         }
         return data;
     }
+
+
+    class FrameworkComponent extends HTMLElement {
+
+        uniqueID = null;
+        component = null;
+
+        shadow = null;
+
+        constructor() {
+            // Always call super first in constructor
+            super();
+
+            // Create a shadow root
+            this.shadow = this.attachShadow({
+                mode: 'open'
+            });
+        }
+
+        connectedCallback() {
+            const uniqueID = this.getAttribute('uniqueid');
+            this.uniqueID = uniqueID;
+
+            const component = this.getAttribute('component');
+            this.component = component;
+
+            console.log('component', component, 'uniqueID', uniqueID, this);
+
+            // Don't use document, because this element could be in a shadow root
+            const root = this.getRootNode();
+            const template = root.getElementById(`template-${uniqueID}`);
+            const instance = template.content.cloneNode(true);
+            this.shadow.appendChild(instance);
+
+            // remove template
+            template.remove();
+        }
+
+        static get observedAttributes() {
+            return ['uniqueid', 'component'];
+        }
+    }
+
+    customElements.define('framework-component', FrameworkComponent);
 </script>

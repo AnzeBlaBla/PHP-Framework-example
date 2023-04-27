@@ -47,8 +47,9 @@ class Component
         $reflection = new ReflectionFunction($renderFunction);
 
         $fileName = $reflection->getFileName();
-        $fileNameNoPHP = str_replace('.php', '', $fileName);
-        $this->componentName = $fileNameNoPHP;
+        $fileName = str_replace('.php', '', $fileName);
+        $fileName = str_replace($helpers->projectRoot, '', $fileName);
+        $this->componentName = $fileName;
 
         $this->renderFunction = $renderFunction;
 
@@ -71,7 +72,7 @@ class Component
         } else {
             $this->componentTreePath = array_merge($this->parentComponent->componentTreePath, [$this->componentName]);
         }
-        if($this->uniqueID == null)
+        if ($this->uniqueID == null)
             $this->uniqueID = md5(implode($this->componentTreePath));
 
         self::$lastRendered = $this;
@@ -90,9 +91,17 @@ class Component
         $this->state = ComponentState::Rendered;
 
         return <<<HTML
-            <!--$this->uniqueID-->
+            
+            <template id="template-{$this->uniqueID}">
+                <!--$this->uniqueID-->
                 {$componentHTML}
-            <!--$this->uniqueID-->
+                <!--$this->uniqueID-->
+            </template>
+
+            <framework-component
+                uniqueid="{$this->uniqueID}"
+                component="{$this->componentName}"
+            ></framework-component>
         HTML;
     }
 

@@ -18,16 +18,18 @@ class Helpers
 
     public SessionState $sessionState;
     public ?DBConnection $db;
+    public $projectRoot;
 
-    public function __construct($sessionState, $dbConnection)
+    public function __construct($sessionState, $dbConnection, $projectRoot)
     {
         $this->sessionState = $sessionState;
         $this->db = $dbConnection;
+        $this->projectRoot = $projectRoot;
     }
 
     public function component($componentPath, $props = [], $key = null)
     {
-        return new Component(require($componentPath), $this, $props, $key);
+        return new Component(require($componentPath . '.php'), $this, $props, $key);
     }
 
     public function function($function)

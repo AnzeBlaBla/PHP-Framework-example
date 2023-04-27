@@ -8,12 +8,18 @@ class Framework
     private $helpers;
     private SessionState $sessionState;
     private ?DBConnection $dbConnection;
+    private $projectRoot;
 
     public function __construct($renderFunction, $dbConnection = null)
     {
         $this->sessionState = new SessionState('Framework');
-        $this->helpers = new Helpers($this->sessionState, $dbConnection);
+
+        $backtrace = debug_backtrace();
+        $this->projectRoot = dirname($backtrace[0]['file']);
+        $this->helpers = new Helpers($this->sessionState, $dbConnection, $this->projectRoot);
+
         $this->dbConnection = $dbConnection;
+
 
         $this->handleRequestData();
 

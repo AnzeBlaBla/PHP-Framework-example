@@ -14,7 +14,7 @@ return function ($h) {
         $user = $h->db->queryOne('SELECT * FROM users WHERE name = ?', [
             $data['name']
         ]);
-
+        $message = '';
         if ($user) {
             // If password is correct
             if ($user['password'] == $data['password']) {
@@ -54,10 +54,11 @@ return function ($h) {
                 <input type="submit" value="Submit">
             </form>
 
-            <p>{$message}</p>
+            {$h->if($message, "<p class='error'>{$message}</p>")}
 
+            
             <style>
-                h1 {
+                .error {
                     color: red;
                 }
             </style>
