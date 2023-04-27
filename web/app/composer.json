@@ -1,0 +1,6 @@
+{
+    "require": {},
+    "require-dev": {},
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
