@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "264b37ac055976f7eb142abeec9ebf89",
+    "content-hash": "77fcc79b11c963d8071dae618c9a9c7a",
     "packages": [
         {
             "name": "anzeblabla/framework",
-            "version": "0.0.1",
+            "version": "0.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AnzeBlaBla/PHP-Framework.git",
-                "reference": "5627257e2fd3e3075d177d5e122b5996163790d4"
+                "reference": "b9af8c98f25b3781f0e28cce68356e5b5a335ace"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AnzeBlaBla/PHP-Framework/zipball/5627257e2fd3e3075d177d5e122b5996163790d4",
-                "reference": "5627257e2fd3e3075d177d5e122b5996163790d4",
+                "url": "https://api.github.com/repos/AnzeBlaBla/PHP-Framework/zipball/b9af8c98f25b3781f0e28cce68356e5b5a335ace",
+                "reference": "b9af8c98f25b3781f0e28cce68356e5b5a335ace",
                 "shasum": ""
             },
             "require": {
@@ -42,9 +42,9 @@
             "description": "A toy project PHP framework",
             "support": {
                 "issues": "https://github.com/AnzeBlaBla/PHP-Framework/issues",
-                "source": "https://github.com/AnzeBlaBla/PHP-Framework/tree/0.0.1"
+                "source": "https://github.com/AnzeBlaBla/PHP-Framework/tree/0.0.3"
             },
-            "time": "2023-04-27T23:04:16+00:00"
+            "time": "2023-04-28T13:14:08+00:00"
         }
     ],
     "packages-dev": [],

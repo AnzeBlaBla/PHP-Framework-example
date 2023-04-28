@@ -7,9 +7,9 @@ return function ($h) {
     /**
      * @var \AnzeBlaBla\Framework\Component $this
      */
-    return <<<HTML
-        <div>
-            Error route
-        </div>
-    HTML;
+    $h->status(404);
+    return [
+        'error' => true,
+        'message' => 'Route not found',
+    ];
 };

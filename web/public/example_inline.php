@@ -16,6 +16,7 @@ Framework::getInstance()->setComponentRoot(__DIR__ . '/../app');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test</title>
+    <?php Framework::getInstance()->renderDependenciesHTML() ?>
 </head>
 
 <body>

@@ -12,8 +12,7 @@ return function ($h) {
      */
     //return print_r($h->sessionState);
 
-    $router = $h->fileSystemRouter('pages');
-    $router->setErrorRoute('error');
+    
 
     return <<<HTML
         <div>
@@ -21,7 +20,12 @@ return function ($h) {
 
             {$h->if(
                 $h->sessionState->loggedIn,
-                $router,
+                function () use ($h) {
+                    $dashRouter = $h->fileSystemRouter('dashboard');
+                    $dashRouter->setErrorRoute('error');
+
+                    return $dashRouter->render();
+                },
                 $h->component('components/Auth')
             )}
         </div>
