@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @param \Framework\Helpers $h
+ * @param \AnzeBlaBla\Framework\Helpers $h
  */
 
 return function ($h) {
     /**
-     * @var \Framework\Component $this
+     * @var \AnzeBlaBla\Framework\Component $this
      */
 
     return <<<HTML

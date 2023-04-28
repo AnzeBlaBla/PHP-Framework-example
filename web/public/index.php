@@ -5,7 +5,9 @@ use AnzeBlaBla\Framework\Framework, AnzeBlaBla\Framework\DBConnection;
 
 $db = new DBConnection('mysql:host=mysql;dbname=test', 'dev', 'dev');
 
-$framework = new Framework(require('App.php'), $db);
+$framework = new Framework(require('../app/App.php'), $db);
+$framework->setComponentRoot(__DIR__ . '/../app');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

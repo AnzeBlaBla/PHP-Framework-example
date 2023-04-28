@@ -5,6 +5,7 @@ use AnzeBlaBla\Framework\Framework, AnzeBlaBla\Framework\Helpers, AnzeBlaBla\Fra
 
 //$c = new Component(require('components/Test.php'));
 Framework::$renderMode = RenderMode::WebComponent;
+Framework::getInstance()->setComponentRoot(__DIR__ . '/../app');
 
 ?>
 <!DOCTYPE html>
@@ -22,7 +23,7 @@ Framework::$renderMode = RenderMode::WebComponent;
     $testvar = 'none';
     ?>
 
-    <?= Helpers::$instance->component('components/Form', [
+    <?= Helpers::getInstance()->component('components/Form', [
         'fields' => [
             [
                 'name' => 'name',

@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @param \Framework\Helpers $h
+ * @param \AnzeBlaBla\Framework\Helpers $h
  */
 
 return function ($h) {
     /**
-     * @var \Framework\Component $this
+     * @var \AnzeBlaBla\Framework\Component $this
      */
 
     $submit = function ($data) use ($h, &$message) {
@@ -16,25 +16,30 @@ return function ($h) {
         ]);
         $message = '';
         if ($user) {
-            // If password is correct
-            if ($user['password'] == $data['password']) {
-                $h->sessionState->user = [
-                    'name' => $data['name'],
-                ];
-
-                $h->sessionState->loggedIn = true;
-
-                $h->reload();
-            } else {
-                $message = 'Incorrect password';
-            }
+            $message = 'User already exists';
         } else {
-            $message = 'User does not exist';
+            if ($data['password'] != $data['password2']) {
+                $message = 'Passwords do not match';
+                return;
+            }
+            // register
+            $h->db->execute('INSERT INTO users (name, password) VALUES (?, ?)', [
+                $data['name'],
+                $data['password'],
+            ]);
+
+            $h->sessionState->user = [
+                'name' => $data['name'],
+            ];
+
+            $h->sessionState->loggedIn = true;
+
+            $h->reload();
         }
     };
     return <<<HTML
         <div>
-            <h2>Login</h2>
+            <h2>Register</h2>
 
             {$h->component('components/Form', [
                 "fields" => [
@@ -48,6 +53,11 @@ return function ($h) {
                         "type" => "password",
                         "placeholder" => "Password",
                     ],
+                    [
+                        "name" => "password2",
+                        "type" => "password",
+                        "placeholder" => "Repeat password",
+                    ]
                 ],
                 'submit' => $submit,
             ])}
