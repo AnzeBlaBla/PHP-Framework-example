@@ -12,6 +12,7 @@ return function ($h) {
         <div>
             B ({$this->treeLocation()})
 
+            {$this->props->data}
         </div>
     HTML;
 };
