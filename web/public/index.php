@@ -7,7 +7,7 @@ use AnzeBlaBla\Framework\Helpers;
 $db = new DBConnection('mysql:host=mysql;dbname=test', 'dev', 'dev');
 
 $framework = new Framework(require('../app/App.php'), $db);
-$framework->setComponentRoot(__DIR__ . '/../app');
+$framework->setComponentsRoot(__DIR__ . '/../app');
 
 
 $apiRouter = $framework->getHelpers()->fileSystemRouter('api');

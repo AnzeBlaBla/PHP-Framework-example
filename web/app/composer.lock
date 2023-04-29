@@ -4,25 +4,26 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "77fcc79b11c963d8071dae618c9a9c7a",
+    "content-hash": "83216cc2c2f143afb62b2c269fa0b02c",
     "packages": [
         {
             "name": "anzeblabla/framework",
-            "version": "0.0.3",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AnzeBlaBla/PHP-Framework.git",
-                "reference": "b9af8c98f25b3781f0e28cce68356e5b5a335ace"
+                "reference": "b406c6e1f31a8e4d52d76fb0f218233169aa30cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AnzeBlaBla/PHP-Framework/zipball/b9af8c98f25b3781f0e28cce68356e5b5a335ace",
-                "reference": "b9af8c98f25b3781f0e28cce68356e5b5a335ace",
+                "url": "https://api.github.com/repos/AnzeBlaBla/PHP-Framework/zipball/b406c6e1f31a8e4d52d76fb0f218233169aa30cc",
+                "reference": "b406c6e1f31a8e4d52d76fb0f218233169aa30cc",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1.0"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -42,15 +43,17 @@
             "description": "A toy project PHP framework",
             "support": {
                 "issues": "https://github.com/AnzeBlaBla/PHP-Framework/issues",
-                "source": "https://github.com/AnzeBlaBla/PHP-Framework/tree/0.0.3"
+                "source": "https://github.com/AnzeBlaBla/PHP-Framework/tree/main"
             },
-            "time": "2023-04-28T13:14:08+00:00"
+            "time": "2023-04-28T17:56:03+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "anzeblabla/framework": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],

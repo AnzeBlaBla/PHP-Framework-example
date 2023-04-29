@@ -5,7 +5,7 @@ use AnzeBlaBla\Framework\Framework, AnzeBlaBla\Framework\Helpers, AnzeBlaBla\Fra
 
 //$c = new Component(require('components/Test.php'));
 Framework::$renderMode = RenderMode::WebComponent;
-Framework::getInstance()->setComponentRoot(__DIR__ . '/../app');
+Framework::getInstance()->setComponentsRoot(__DIR__ . '/../app');
 
 ?>
 <!DOCTYPE html>
